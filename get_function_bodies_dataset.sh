@@ -3,11 +3,11 @@
 FUNCTION_BODIES=""
 
 declare -a PROJECTS=(
-    "https://github.com/psf/black"
-    "https://github.com/pallets/flask" 
-    "https://github.com/pandas-dev/pandas"
-    "https://github.com/scrapy/scrapy"
-    "https://github.com/tensorflow/tensorflow"
+    "https://github.com/rsalmei/alive-progress"
+    "https://github.com/FahrplanDatenGarten/pyhafas" 
+    "https://github.com/dropbox/pyannotate"
+    "https://github.com/sola-st/DynaPyt"
+    "https://github.com/alirn76/panther"
 )
 
 mkdir popular_projects_snippets_dataset
