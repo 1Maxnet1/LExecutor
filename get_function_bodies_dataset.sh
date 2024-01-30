@@ -17,8 +17,10 @@ for project in ${PROJECTS[@]}; do
     REPO_NAME=$(echo $project | grep -o '[^/]*$')
 
     # delete repo in case it already exists
-    rm -rf data/repos/$REPO_NAME
+    rm -rf ./data/repos/$REPO_NAME
+
     # download repo
+    mkdir -p ./data/repos
     git -C ./data/repos clone $project
     # create destination dir
     mkdir popular_projects_snippets_dataset/$REPO_NAME
@@ -26,9 +28,15 @@ for project in ${PROJECTS[@]}; do
     mkdir popular_projects_snippets_dataset/$REPO_NAME/functions_with_invocation
     mkdir popular_projects_snippets_dataset/$REPO_NAME/bodies
     # extract function bodies
-    if [ "$REPO_NAME" == "flask" ] || [ "$REPO_NAME" == "black" ]
+    if [ "$REPO_NAME" == "DynaPyt" ]
     then
-        FILES=$(find ./data/repos/$REPO_NAME/src/$REPO_NAME -type f -name "*.py")
+        FILES=$(find ./data/repos/$REPO_NAME/src/dynapyt -type f -name "*.py")
+    elif [ "$REPO_NAME" == "pyannotate" ]
+    then
+        FILES=$(find ./data/repos/$REPO_NAME/pyannotate_tools -type f -name "*.py")
+    elif [ "$REPO_NAME" == "alive-progress" ]
+    then
+        FILES=$(find ./data/repos/$REPO_NAME/alive_progress -type f -name "*.py")
     else
         FILES=$(find ./data/repos/$REPO_NAME/$REPO_NAME -type f -name "*.py")
     fi
