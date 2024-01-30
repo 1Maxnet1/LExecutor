@@ -10,3 +10,4 @@ torch
 transformers
 GitPython
 beautifulsoup4
+matplotlib
