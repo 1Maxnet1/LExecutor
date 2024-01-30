@@ -37,6 +37,6 @@ class Hyperparams(object):
     # experiments
     dataset = "so_snippets"
     # dataset = "random_functions"
-    number_executions = 10
+    number_executions = 3
 
     
