@@ -32,7 +32,12 @@ for dataset in datasets:
                 except pd.errors.EmptyDataError:
                     print(file)
 
-            files = combined_df_for_predictor.file.unique()
+            files = []
+
+            try:
+                files = combined_df_for_predictor.file.unique()
+            except AttributeError:
+                pass
 
             for file in files:
                 indexes = combined_df_for_predictor.index[combined_df_for_predictor['file'] == file].tolist()
@@ -41,7 +46,7 @@ for dataset in datasets:
 
             all_executions_df = pd.concat([all_executions_df, combined_df_for_predictor], ignore_index=True)
 
-        combined_df_for_predictor = all_executions_df.groupby('file', as_index=False)["covered_iids","total_uses","guided_uses","covered_lines","executed_lines", "execution_time", "random_predictions","type4py_predictions"].mean()
+        combined_df_for_predictor = all_executions_df.groupby('file', as_index=False)[["covered_iids","total_uses","guided_uses","covered_lines","executed_lines", "execution_time", "random_predictions","type4py_predictions"]].mean()
         combined_df_for_predictor['predictor'] = [predictor] * len(combined_df_for_predictor)
 
         if predictor == 'PynguinTests':
